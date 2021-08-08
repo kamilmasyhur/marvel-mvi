@@ -5,6 +5,11 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def props = new Properties()
+file(
+        "$rootDir/gradle.properties"
+).withInputStream { props.load(it) }
+
 android {
     compileSdk 30
 
@@ -16,6 +21,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_KEY", "${props.getProperty("api_key")}"
+        buildConfigField "String", "BASE_URL", "${props.getProperty("base_url")}"
     }
 
     buildTypes {
@@ -36,10 +44,12 @@ android {
 dependencies {
     implementation 'io.reactivex.rxjava3:rxjava:3.0.13'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 
-    implementation "com.google.dagger:hilt-android:1.0.0"
-    kapt "com.google.dagger:hilt-compiler:1.0.0"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
 
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
