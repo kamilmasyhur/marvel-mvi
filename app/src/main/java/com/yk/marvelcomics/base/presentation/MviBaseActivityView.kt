@@ -27,9 +27,8 @@ abstract class MviBaseActivityView<
 
     private lateinit var viewModel: MviBaseViewModel<I, A, R, S>
 
-    abstract fun inject()
-
     abstract fun getViewModel(): MviBaseViewModel<I, A, R, S>
+
 
     private var _binding: ViewBinding? = null
     abstract val bindingInflater: (LayoutInflater) -> VB
@@ -40,7 +39,6 @@ abstract class MviBaseActivityView<
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        inject()
         preCreate()
         viewModel = getViewModel()
         check(::viewModel.isInitialized) { "ViewModel is not initialized" }

@@ -14,7 +14,7 @@
     android:theme="@style/Theme.MarvelComics">
     <activity
       android:exported="true"
-      android:name=".MainActivity">
+      android:name="com.yk.marvelcomics.feature.main.presentation.MainActivity">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 
