@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+  <item
+    android:id="@+id/btmNavHome"
+    android:icon="@drawable/marvel_ic_home_24"
+    android:title="@string/marvel_home" />
+  <item
+    android:id="@+id/btmNavFavorite"
+    android:icon="@drawable/marvel_ic_favorite_24"
+    android:title="@string/marvel_favorite" />
+  <item
+    android:id="@+id/btmNavProfile"
+    android:icon="@drawable/marvel_ic_profile_24"
+    android:title="@string/marvel_profile" />
+</menu>

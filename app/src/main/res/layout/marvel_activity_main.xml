@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".feature.main.presentation.MainActivity">
+
+  <androidx.viewpager2.widget.ViewPager2
+    android:id="@+id/viewPager"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    app:layout_constrainedHeight="true"
+    app:layout_constraintBottom_toTopOf="@id/btmNavMain"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0" />
+
+  <com.google.android.material.bottomnavigation.BottomNavigationView
+    android:id="@+id/btmNavMain"
+    android:layout_width="match_parent"
+    android:layout_height="?actionBarSize"
+    android:background="@color/marvel_bottom_sheet_background"
+    app:elevation="8dp"
+    app:itemIconTint="@color/marvel_white"
+    app:itemTextColor="@color/marvel_white"
+    app:labelVisibilityMode="labeled"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/viewPager"
+    app:menu="@menu/marvel_main_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

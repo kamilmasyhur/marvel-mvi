@@ -1,3 +1,7 @@
 <resources>
-  <string name="app_name">Marvel Comics</string>
+  <public type="string" name="marvel_app_name" />
+  <string name="marvel_app_name">Marvel Comics</string>
+  <string name="marvel_home">Home</string>
+  <string name="marvel_favorite">Favorite</string>
+  <string name="marvel_profile">Profile</string>
 </resources>

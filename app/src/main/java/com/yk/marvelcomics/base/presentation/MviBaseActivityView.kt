@@ -29,22 +29,14 @@ abstract class MviBaseActivityView<
 
     abstract fun getViewModel(): MviBaseViewModel<I, A, R, S>
 
-
-    private var _binding: ViewBinding? = null
-    abstract val bindingInflater: (LayoutInflater) -> VB
-
-    @Suppress("UNCHECKED_CAST")
-    val binding: VB
-        get() = _binding as VB
+    abstract val binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preCreate()
         viewModel = getViewModel()
         check(::viewModel.isInitialized) { "ViewModel is not initialized" }
-        _binding = bindingInflater.invoke(layoutInflater)
         setContentView(binding.root)
-        populateUI()
         eventEmitter = PublishSubject.create()
         viewModel.state()
             .subscribe(::render) { e ->
@@ -60,11 +52,8 @@ abstract class MviBaseActivityView<
     override fun onDestroy() {
         compositeDisposable.clear()
         eventEmitter.onComplete()
-        _binding = null
         super.onDestroy()
     }
-
-    protected open fun populateUI() {}
 
     protected open fun postCreate() {}
 
