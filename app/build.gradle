@@ -25,7 +25,8 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "API_KEY", "${props.getProperty("api_key")}"
+        buildConfigField "String", "PUBLIC_KEY", "${props.getProperty("public_key")}"
+        buildConfigField "String", "PRIVATE_KEY", "${props.getProperty("private_key")}"
         buildConfigField "String", "BASE_URL", "${props.getProperty("base_url")}"
     }
 
@@ -49,6 +50,7 @@ dependencies {
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
@@ -59,6 +61,7 @@ dependencies {
     debugImplementation "com.github.chuckerteam.chucker:library:3.5.2"
     releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.5.2"
 
+    implementation "androidx.fragment:fragment-ktx:1.3.6"
     implementation 'androidx.lifecycle:lifecycle-common-java8:2.3.1'
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'

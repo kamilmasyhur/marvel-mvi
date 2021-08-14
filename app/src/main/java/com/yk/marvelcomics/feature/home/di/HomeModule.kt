@@ -6,6 +6,8 @@ import com.yk.marvelcomics.feature.home.data.HomeRepository
 import com.yk.marvelcomics.feature.home.data.HomeRepositoryImpl
 import com.yk.marvelcomics.feature.home.domain.HomeUseCase
 import com.yk.marvelcomics.feature.home.domain.HomeUseCaseImpl
+import com.yk.marvelcomics.feature.home.domain.transformer.HomeTransformer
+import com.yk.marvelcomics.feature.home.domain.transformer.HomeTransformerImpl
 import com.yk.marvelcomics.feature.home.ui.viewmodel.HomeViewModel
 import dagger.Binds
 import dagger.Module
@@ -15,16 +17,19 @@ import dagger.multibindings.IntoMap
 
 @Module
 @InstallIn(FragmentComponent::class)
-abstract class HomeModule {
+interface HomeModule {
 
     @Binds
-    abstract fun bindRepository(impl: HomeRepositoryImpl): HomeRepository
+    fun bindRepository(impl: HomeRepositoryImpl): HomeRepository
 
     @Binds
-    abstract fun bindUseCase(impl: HomeUseCaseImpl): HomeUseCase
+    fun bindUseCase(impl: HomeUseCaseImpl): HomeUseCase
+
+    @Binds
+    fun bindHomeTransformer(impl: HomeTransformerImpl): HomeTransformer
 
     @Binds
     @IntoMap
     @ViewModelKey(HomeViewModel::class)
-    abstract fun provideViewModel(binds: HomeViewModel): ViewModel
+    fun provideViewModel(binds: HomeViewModel): ViewModel
 }
