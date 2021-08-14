@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="marvel_spacing_16dp">16dp</dimen>
+    <dimen name="marvel_spacing_8dp">8dp</dimen>
+    <dimen name="marvel_spacing_12dp">12dp</dimen>
+    <dimen name="marvel_spacing_4dp">4dp</dimen>
+    <dimen name="marvel_text_size_12sp">12sp</dimen>
+    <dimen name="marvel_text_size_10sp">10sp</dimen>
+    <dimen name="marvel_text_size_14sp">14sp</dimen>
+</resources>

@@ -13,4 +13,13 @@
     <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
     <!-- Customize your theme here. -->
   </style>
+
+  <style name="MarvelShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+    <item name="cornerSize">50%</item>
+  </style>
+
+  <style name="MarvelShapeAppearanceOverlay.App.CornerSize10Percent" parent="">
+    <item name="cornerSize">10%</item>
+  </style>
+
 </resources>

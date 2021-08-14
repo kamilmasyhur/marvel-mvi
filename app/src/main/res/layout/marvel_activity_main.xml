@@ -21,7 +21,7 @@
     android:id="@+id/btmNavMain"
     android:layout_width="match_parent"
     android:layout_height="?actionBarSize"
-    android:background="@color/marvel_bottom_sheet_background"
+    android:background="@color/marvel_base_vivid_red"
     app:elevation="8dp"
     app:itemIconTint="@color/marvel_white"
     app:itemTextColor="@color/marvel_white"
