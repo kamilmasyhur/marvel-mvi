@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/marvel_spacing_4dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imageItemEvent"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/MarvelShapeAppearanceOverlay.App.CornerSize10Percent"
+        app:srcCompat="@drawable/image_hero_spiderman" />
+
+    <TextView
+        android:id="@+id/txtItemEventTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marvel_spacing_12dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/marvel_light_bg_dark_primary_text"
+        android:textSize="@dimen/marvel_text_size_14sp"
+        app:layout_constraintBottom_toTopOf="@id/txtItemEventDescription"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageItemEvent"
+        app:layout_constraintTop_toTopOf="@id/imageItemEvent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Age of Ultron" />
+
+    <TextView
+        android:id="@+id/txtItemEventDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marvel_spacing_4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:textColor="@color/marvel_light_bg_dark_secondary_text"
+        android:textSize="@dimen/marvel_text_size_12sp"
+        app:layout_constraintBottom_toBottomOf="@id/imageItemEvent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/txtItemEventTitle"
+        app:layout_constraintTop_toBottomOf="@id/txtItemEventTitle"
+        tools:text="The heroes of the Marvel Universe have already fallen with the robot Ultron remake from vision. Avengers start to fight them" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
