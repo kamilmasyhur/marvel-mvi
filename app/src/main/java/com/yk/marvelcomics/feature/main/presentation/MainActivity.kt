@@ -31,8 +31,8 @@ class MainActivity : MviBaseActivityView<
     private val intent: PublishSubject<MviIntent> = PublishSubject.create()
     private val pages = mapOf(
         Pair(HOME, HomeFragment()),
-        Pair(FAVORITE, HomeFragment()), //TODO: need to be updated
-        Pair(PROFILE, HomeFragment()), //TODO: need to be updated
+        Pair(FAVORITE, BlankFragment()), //TODO: need to be updated
+        Pair(PROFILE, BlankFragment()), //TODO: need to be updated
     )
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
