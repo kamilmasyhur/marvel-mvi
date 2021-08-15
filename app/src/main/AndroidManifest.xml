@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
   package="com.yk.marvelcomics">
 
   <uses-permission android:name="android.permission.INTERNET"/>
@@ -10,8 +11,10 @@
     android:label="@string/marvel_app_name"
     android:roundIcon="@mipmap/ic_launcher_round"
     android:supportsRtl="true"
+    android:usesCleartextTraffic="true"
     android:name=".MarvelComicsApp"
-    android:theme="@style/MarvelTheme.MarvelComics">
+    android:theme="@style/MarvelTheme.MarvelComics"
+    tools:targetApi="m">
     <activity
       android:exported="true"
       android:name="com.yk.marvelcomics.feature.main.presentation.MainActivity">

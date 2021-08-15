@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardImage"
+        android:id="@+id/card_image_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/marvel_spacing_4dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imgItemComic"
+            android:id="@+id/img_item_comic"
             tools:src="@drawable/image_comic_hulk"
             android:layout_width="100dp"
             android:layout_height="150dp" />
@@ -34,9 +34,9 @@
         android:textStyle="bold"
         android:id="@+id/txtComicTitle"
         android:layout_marginTop="@dimen/marvel_spacing_12dp"
-        app:layout_constraintEnd_toEndOf="@id/cardImage"
-        app:layout_constraintStart_toStartOf="@id/cardImage"
-        app:layout_constraintTop_toBottomOf="@id/cardImage"
+        app:layout_constraintEnd_toEndOf="@id/card_image_container"
+        app:layout_constraintStart_toStartOf="@id/card_image_container"
+        app:layout_constraintTop_toBottomOf="@id/card_image_container"
         tools:text="The Amazing Spiderman" />
 
     <TextView
@@ -48,8 +48,8 @@
         android:textColor="@color/marvel_light_bg_dark_secondary_text"
         android:textSize="@dimen/marvel_text_size_10sp"
         android:layout_marginTop="@dimen/marvel_spacing_4dp"
-        app:layout_constraintEnd_toEndOf="@id/cardImage"
-        app:layout_constraintStart_toStartOf="@id/cardImage"
+        app:layout_constraintEnd_toEndOf="@id/card_image_container"
+        app:layout_constraintStart_toStartOf="@id/card_image_container"
         app:layout_constraintTop_toBottomOf="@id/txtComicTitle"
         tools:text="Stan Lee" />
 
