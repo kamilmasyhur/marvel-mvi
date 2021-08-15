@@ -2,14 +2,13 @@ package com.yk.marvelcomics.feature.home.ui.presentation
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
-import com.yk.marvelcomics.R
 import com.yk.marvelcomics.base.presentation.MVIBaseFragment
-import com.yk.marvelcomics.base.presentation.viewmodel.MviBaseViewModel
 import com.yk.marvelcomics.base.presentation.viewmodel.factory.ViewModelFactory
 import com.yk.marvelcomics.common.viewBinding
 import com.yk.marvelcomics.databinding.MarvelFragmentHomeBinding
-import com.yk.marvelcomics.extension.exhaustive
+import com.yk.marvelcomics.feature.home.ui.state.HomeContentView
 import com.yk.marvelcomics.feature.home.ui.state.MviHomeAction
 import com.yk.marvelcomics.feature.home.ui.state.MviHomeIntent
 import com.yk.marvelcomics.feature.home.ui.state.MviHomeResult
@@ -31,7 +30,6 @@ class HomeFragment :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvBlankFragment.text = getString(R.string.marvel_app_name)
         MviHomeIntent.InitiateHome.let(eventEmitter::onNext) //initiate home, do api call once
     }
 
@@ -40,16 +38,25 @@ class HomeFragment :
     )
 
     override fun render(state: MviHomeViewState) { //start render UI here
-        when(state) {
-            MviHomeViewState.ConnectionError -> {
-                binding.tvBlankFragment.text = "connection error"
-            }
-            is MviHomeViewState.Content -> {
-                binding.tvBlankFragment.text = state.content.toString()
-            }
-            MviHomeViewState.ShowLoading -> {
-                binding.tvBlankFragment.text = "loading"
-            }
-        }.exhaustive
+        renderLoading(state.loading)
+        renderContent(state.content)
+        renderError(state.error)
+    }
+
+    private fun renderError(error: Throwable?) {
+        error?.let {
+            /* TODO: add something to show error to user */
+        }
+    }
+
+    private fun renderContent(content: HomeContentView?) = with(binding) {
+        content?.comicsData?.let {
+            marvelComicView.addComicsItem(it)
+        }
+        marvelComicView.isVisible = content?.comicsData != null
+    }
+
+    private fun renderLoading(loading: Boolean) {
+        binding.pgHomeLoader.isVisible = loading
     }
 }

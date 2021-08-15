@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(
     actionProcessor: HomeActionProcessor
 ) : MviBaseViewModel<MviHomeIntent, MviHomeAction, MviHomeResult, MviHomeViewState>(
     actionProcessor,
-    MviHomeViewState.ShowLoading
+    MviHomeViewState.initiate()
 ) {
     override fun mapToActions(intent: MviHomeIntent): MviHomeAction {
         Log.d("HomeViewModel", "MapToAction: ${intent.javaClass.canonicalName}")
@@ -28,19 +28,29 @@ class HomeViewModel @Inject constructor(
         Log.d("MainViewModel", "Reducer: ${previousState.javaClass.canonicalName}")
         return when (result) {
             is MviHomeResult.InitiateHome.Content -> {
-                MviHomeViewState.Content(
+                previousState.copy(
+                    loading = false,
                     content = HomeContentView(
-                        comics = result.data.comics,
+                        comicsData = result.data.comicsData,
                         characters = result.data.characters,
                         events = result.data.events
-                    )
+                    ),
+                    error = null
                 )
             }
             is MviHomeResult.InitiateHome.Error -> {
-                MviHomeViewState.ConnectionError
+                previousState.copy(
+                    loading = false,
+                    content = null,
+                    error = result.throwable
+                )
             }
             MviHomeResult.InitiateHome.Loading -> {
-                MviHomeViewState.ShowLoading
+                previousState.copy(
+                    loading = true,
+                    content = null,
+                    error = null
+                )
             }
         }.exhaustive
     }
