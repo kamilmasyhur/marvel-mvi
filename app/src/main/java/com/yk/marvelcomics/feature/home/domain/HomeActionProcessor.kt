@@ -24,9 +24,9 @@ class HomeActionProcessor @Inject constructor(
                     repository.getCharacters(),
                     repository.getEvents(), { comicsResponse, charactersResponse, eventsResponse ->
                         val result = homeTransformer.transform(
-                            comics = comicsResponse,
-                            characters = charactersResponse,
-                            events = eventsResponse
+                            comicsResponse = comicsResponse,
+                            charactersResponse = charactersResponse,
+                            eventsResponse = eventsResponse
                         )
                         MviHomeResult.InitiateHome.Content(result)
                     })
