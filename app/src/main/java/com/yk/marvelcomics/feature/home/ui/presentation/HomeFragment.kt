@@ -50,10 +50,14 @@ class HomeFragment :
     }
 
     private fun renderContent(content: HomeContentView?) = with(binding) {
-        content?.comicsData?.let {
-            marvelComicView.addComicsItem(it)
+        content?.let { content ->
+            marvelComicsView.addComicsItem(content.comicsData)
+            marvelCharactersView.addCharactersItem(content.characters)
+            marvelEventsView.addEventsItem(content.events)
         }
-        marvelComicView.isVisible = content?.comicsData != null
+        marvelComicsView.isVisible = content?.comicsData != null
+        marvelCharactersView.isVisible = content?.characters != null
+        marvelEventsView.isVisible = content?.events != null
     }
 
     private fun renderLoading(loading: Boolean) {

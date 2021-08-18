@@ -13,30 +13,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_characters"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/marvel_comic_view" />
-
-  <androidx.recyclerview.widget.RecyclerView
-    android:id="@+id/rv_events"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/rv_characters" />
-
   <com.yk.marvelcomics.feature.home.ui.presentation.subview.MarvelComics
-    android:id="@+id/marvel_comic_view"
+    android:id="@+id/marvel_comics_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:visibility="gone"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <com.yk.marvelcomics.feature.home.ui.presentation.subview.MarvelCharacters
+    android:id="@+id/marvel_characters_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/marvel_comics_view" />
+
+  <com.yk.marvelcomics.feature.home.ui.presentation.subview.MarvelEvents
+    android:id="@+id/marvel_events_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:visibility="gone"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/marvel_characters_view" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,14 +1,15 @@
 package com.yk.marvelcomics.feature.home.ui.state
 
 import com.yk.marvelcomics.base.MviViewState
-import com.yk.marvelcomics.feature.home.data.response.CharactersResponse
 import com.yk.marvelcomics.feature.home.data.response.EventsResponse
+import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharactersDataView
 import com.yk.marvelcomics.feature.home.ui.presentation.subview.ComicsDataView
+import com.yk.marvelcomics.feature.home.ui.presentation.subview.EventsDataView
 
 data class HomeContentView(
     val comicsData: ComicsDataView,
-    val characters: CharactersResponse,
-    val events: EventsResponse,
+    val characters: CharactersDataView,
+    val events: EventsDataView,
 )
 
 data class MviHomeViewState(

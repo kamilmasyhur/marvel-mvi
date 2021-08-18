@@ -97,6 +97,7 @@ class MainActivity : MviBaseActivityView<
 
         viewPager.offscreenPageLimit = 1
         viewPager.adapter = adapter
+        viewPager.isUserInputEnabled = false
     }
 
     private fun renderInitialState(state: MainViewState.InitialState) {
