@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/marvel_spacing_16dp"
+    tools:background="@color/marvel_grey">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/image_item_event"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/MarvelShapeAppearanceOverlay.App.SelectedCornerRadius"
+        app:strokeColor="@android:color/darker_gray"
+        app:strokeWidth="4dp"
+        tools:srcCompat="@drawable/image_hero_spiderman" />
+
+    <TextView
+        android:id="@+id/text_detail_event_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/marvel_spacing_32dp"
+        android:layout_marginTop="@dimen/marvel_spacing_8dp"
+        android:layout_marginEnd="@dimen/marvel_spacing_32dp"
+        android:textColor="@color/marvel_white"
+        android:textSize="@dimen/marvel_text_size_14sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/text_detail_event_year"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_item_event"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Spider-Man (Miles Morales)" />
+
+    <TextView
+        android:id="@+id/text_detail_event_year"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/marvel_spacing_4dp"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:textColor="@color/marvel_white"
+        android:textSize="@dimen/marvel_text_size_12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/text_detail_event_title"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@id/text_detail_event_title"
+        app:layout_constraintTop_toBottomOf="@+id/text_detail_event_title"
+        tools:text="2016" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
