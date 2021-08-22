@@ -22,4 +22,11 @@
     <item name="cornerSize">10%</item>
   </style>
 
+  <style name="MarvelShapeAppearanceOverlay.App.SelectedCornerRadius" parent="">
+    <item name="cornerSizeTopLeft">36dp</item>
+    <item name="cornerFamilyTopRight">rounded</item>
+    <item name="cornerSizeBottomRight">36dp</item>
+    <item name="cornerFamilyBottomLeft">rounded</item>
+  </style>
+
 </resources>

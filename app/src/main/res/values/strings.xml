@@ -1,15 +1,15 @@
 <resources>
-  <public name="marvel_app_name" type="string" />
-  <string name="marvel_app_name">Marvel Comics</string>
-  <string name="marvel_home">Home</string>
-  <string name="marvel_favorite">Favorite</string>
-  <string name="marvel_profile">Profile</string>
+    <public name="marvel_app_name" type="string" />
+    <string name="marvel_app_name">Marvel Comics</string>
+    <string name="marvel_home">Home</string>
+    <string name="marvel_favorite">Favorite</string>
+    <string name="marvel_profile">Profile</string>
   <string name="marvel_see_all">See All</string>
-  <string name="marvel_top_comics_for_you">Top Comics For You</string>
-  <!-- TODO: Remove or change this placeholder text -->
-  <string name="marvel_blank_fragment">Hello blank fragment</string>
-  <string name="marvel_comics_title">Top Comics For You</string>
-  <string name="marvel_characters_title">Your Favorite Heroes</string>
+    <string name="marvel_top_comics_for_you">Top Comics For You</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="marvel_blank_fragment">Hello blank fragment</string>
+    <string name="marvel_comics_title">Top Comics For You</string>
+    <string name="marvel_characters_title">Your Favorite Heroes</string>
   <string name="marvel_events_title">Most Popular Events</string>
   <string name="marvel_comics_cta">See All</string>
 </resources>
