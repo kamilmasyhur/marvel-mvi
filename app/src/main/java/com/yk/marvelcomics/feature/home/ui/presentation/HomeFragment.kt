@@ -1,5 +1,6 @@
 package com.yk.marvelcomics.feature.home.ui.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -8,6 +9,7 @@ import com.yk.marvelcomics.base.presentation.MVIBaseFragment
 import com.yk.marvelcomics.base.presentation.viewmodel.factory.ViewModelFactory
 import com.yk.marvelcomics.common.viewBinding
 import com.yk.marvelcomics.databinding.MarvelFragmentHomeBinding
+import com.yk.marvelcomics.feature.detail.presentation.DetailActivity
 import com.yk.marvelcomics.feature.home.ui.state.HomeContentView
 import com.yk.marvelcomics.feature.home.ui.state.MviHomeAction
 import com.yk.marvelcomics.feature.home.ui.state.MviHomeIntent
@@ -31,6 +33,9 @@ class HomeFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         MviHomeIntent.InitiateHome.let(eventEmitter::onNext) //initiate home, do api call once
+        binding.marvelComicView.setOnClickListener {
+            requireActivity().startActivity(Intent(requireContext(), DetailActivity::class.java))
+        }
     }
 
     override fun intents(): Observable<MviHomeIntent> = Observable.mergeArray(

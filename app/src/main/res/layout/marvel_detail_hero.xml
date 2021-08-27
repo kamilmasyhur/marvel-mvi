@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/marvel_spacing_16dp"
-    tools:background="@color/marvel_grey">
+    android:background="@color/marvel_grey">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_item_hero"
@@ -24,8 +24,8 @@
         android:textColor="@color/marvel_white"
         android:textSize="@dimen/marvel_text_size_14sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@+id/text_detail_hero_date"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/image_item_hero"
         app:layout_constraintTop_toTopOf="@id/image_item_hero"
         app:layout_constraintVertical_chainStyle="packed"
