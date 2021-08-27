@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/marvel_spacing_16dp"
-    tools:background="@color/marvel_grey">
+    android:background="@color/marvel_grey">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_item_event"
