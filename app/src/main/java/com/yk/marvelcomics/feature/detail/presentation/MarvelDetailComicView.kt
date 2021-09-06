@@ -36,4 +36,4 @@ data class DetailComicDataView(
     val creators: List<String>?,
     val price: String?,
     val image: String?
-)
+) : DetailDataView

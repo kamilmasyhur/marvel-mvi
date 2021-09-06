@@ -33,4 +33,4 @@ data class DetailEventDataView(
     val title: String?,
     val year: String?,
     val image: String?
-)
+) : DetailDataView

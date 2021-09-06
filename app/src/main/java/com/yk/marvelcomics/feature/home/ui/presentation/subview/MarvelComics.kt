@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.yk.marvelcomics.databinding.MarvelComicsViewBinding
+import com.yk.marvelcomics.feature.detail.presentation.DetailDataView
 import com.yk.marvelcomics.feature.home.ui.adapter.ComicsAdapter
 
 class MarvelComics @JvmOverloads constructor(
@@ -28,7 +29,7 @@ class MarvelComics @JvmOverloads constructor(
 
 data class ComicsDataView(
     val comics: List<Comic>
-) {
+): DetailDataView {
     data class Comic(
         val title: String?,
         val creator: String?,

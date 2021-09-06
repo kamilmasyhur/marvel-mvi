@@ -26,7 +26,7 @@ interface MarvelApi {
     @GET("/v1/public/comics/{comicId}/characters")
     fun getCharacterByComicId(
         @Path("comicId") comicId: Int
-    ): Single<DetailResponse>
+    ): Single<CharactersResponse>
 
     @GET("/v1/public/characters/{characterId}")
     fun getDetailCharacter(

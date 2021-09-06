@@ -28,4 +28,4 @@ class MarvelDetailSynopsisView(
 
 data class DetailSynopsisDataView(
     val synopsis: String?
-)
+) : DetailDataView

@@ -33,4 +33,4 @@ data class DetailHeroDataView(
     val image: String?,
     val title: String?,
     val date: String?
-)
+) : DetailDataView
