@@ -1,6 +1,8 @@
 package com.yk.marvelcomics.feature.home.domain.transformer
 
 import com.yk.marvelcomics.common.getOrEmpty
+import com.yk.marvelcomics.feature.detail.data.response.DetailResponse
+import com.yk.marvelcomics.feature.detail.presentation.DetailComicDataView
 import com.yk.marvelcomics.feature.home.data.response.CharactersResponse
 import com.yk.marvelcomics.feature.home.data.response.ComicsResponse
 import com.yk.marvelcomics.feature.home.data.response.EventsResponse
@@ -16,6 +18,11 @@ interface HomeTransformer {
         charactersResponse: CharactersResponse,
         eventsResponse: EventsResponse
     ): HomeContentView
+
+    fun transformComics(comicResponse: ComicsResponse): ComicsDataView
+    fun transformCharacters(charactersResponse: CharactersResponse): CharactersDataView
+    fun transformEvents(eventsResponse: EventsResponse): EventsDataView
+    fun comicDetailMapper(detailComic: DetailResponse): DetailComicDataView
 }
 
 class HomeTransformerImpl @Inject constructor() : HomeTransformer {
@@ -31,7 +38,7 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
         )
     }
 
-    private fun transformComics(comicResponse: ComicsResponse): ComicsDataView {
+    override fun transformComics(comicResponse: ComicsResponse): ComicsDataView {
         val comics = mutableListOf<ComicsDataView.Comic>()
         comicResponse.data?.results?.map { result ->
             result?.let {
@@ -40,7 +47,8 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
                         title = result.title.getOrEmpty(),
                         creator = result.creators
                             ?.items
-                            ?.firstNotNullOfOrNull { it?.name.toString() }.getOrEmpty(),
+                            ?.firstOrNull { it?.name.toString().isNotEmpty() }
+                            ?.name.orEmpty(),
                         thumbnail = "${result.thumbnail?.path}.${result.thumbnail?.extension}"
                     )
                 )
@@ -49,7 +57,7 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
         return ComicsDataView(comics)
     }
 
-    private fun transformCharacters(charactersResponse: CharactersResponse): CharactersDataView {
+    override fun transformCharacters(charactersResponse: CharactersResponse): CharactersDataView {
         val characters = mutableListOf<CharactersDataView.Characters>()
         charactersResponse.data?.results?.map { result ->
             result?.thumbnail?.let {
@@ -64,7 +72,7 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
     }
 
 
-    private fun transformEvents(eventsResponse: EventsResponse): EventsDataView {
+    override fun transformEvents(eventsResponse: EventsResponse): EventsDataView {
         val events = mutableListOf<EventsDataView.Event>()
         eventsResponse.data?.results?.map { result ->
             result?.let {
@@ -78,5 +86,18 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
             }
         }
         return EventsDataView(events)
+    }
+
+    override fun comicDetailMapper(detailComic: DetailResponse): DetailComicDataView {
+        val detailDataComic = detailComic.data?.results?.firstOrNull()
+        val creators: List<String>? = detailDataComic?.creators?.items?.map {
+            it?.name.orEmpty()
+        }
+        val price = "$${detailDataComic?.prices?.firstOrNull()?.price}"
+        val image = "${detailDataComic?.thumbnail?.path}.${detailDataComic?.thumbnail?.extension}"
+        return DetailComicDataView(
+            title = detailDataComic?.title, creators = creators, price = price,
+            image = image
+        )
     }
 }

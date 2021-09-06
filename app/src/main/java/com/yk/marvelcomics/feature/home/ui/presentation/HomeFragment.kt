@@ -33,7 +33,7 @@ class HomeFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         MviHomeIntent.InitiateHome.let(eventEmitter::onNext) //initiate home, do api call once
-        binding.marvelComicView.setOnClickListener {
+        binding.marvelComicsView.setOnClickListener {
             requireActivity().startActivity(Intent(requireContext(), DetailActivity::class.java))
         }
     }

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.yk.marvelcomics.databinding.MarvelEventsViewBinding
+import com.yk.marvelcomics.feature.detail.presentation.DetailDataView
 import com.yk.marvelcomics.feature.home.ui.adapter.CharactersAdapter
 import com.yk.marvelcomics.feature.home.ui.adapter.EventsAdapter
 
@@ -29,7 +30,7 @@ class MarvelEvents @JvmOverloads constructor(
 
 data class EventsDataView(
     val event: List<Event>
-) {
+) : DetailDataView {
     data class Event(
         val title: String,
         val description: String,

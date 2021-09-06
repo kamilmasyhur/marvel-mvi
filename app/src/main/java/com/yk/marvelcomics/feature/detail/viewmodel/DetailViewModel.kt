@@ -15,11 +15,29 @@ class DetailViewModel @Inject constructor(
     DetailViewState.initiate()
 ) {
     override fun mapToActions(intent: DetailIntent): DetailAction {
-        TODO("Not yet implemented")
+        return when(intent) {
+            is DetailIntent.LoadPage -> DetailAction.LoadPage(intent.pageType, intent.detailId)
+        }
     }
 
     override fun reduce(previousState: DetailViewState, result: DetailResult): DetailViewState {
-        TODO("Not yet implemented")
+        return when(result) {
+            is DetailResult.LoadPage.Content -> previousState.copy(
+                loading = false,
+                error = null,
+                dataViews = result.dataViews
+            )
+            is DetailResult.LoadPage.Error -> previousState.copy(
+                loading = false,
+                error = result.throwable,
+                dataViews = null
+            )
+            is DetailResult.LoadPage.Loading -> previousState.copy(
+                loading = true,
+                error = null,
+                dataViews = null
+            )
+        }
     }
 
 }
