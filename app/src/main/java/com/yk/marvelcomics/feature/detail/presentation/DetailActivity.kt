@@ -36,8 +36,13 @@ class DetailActivity :
     )
 
     override fun render(state: DetailViewState) {
-        state.dataViews?.let {
-            Toast.makeText(this, it.firstOrNull().toString(), Toast.LENGTH_SHORT).show()
+        val detailComicDataView = state.detailComicDataView
+        val detailCharacterDataView = state.detailCharacterDataView
+        detailComicDataView?.let {
+            binding.marvelComicDetailView.setupDataView(detailComicDataView)
+        }
+        detailCharacterDataView?.let {
+            binding.marvelCharactersView.addCharactersItem(detailCharacterDataView)
         }
     }
 

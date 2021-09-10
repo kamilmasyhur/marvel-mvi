@@ -3,9 +3,7 @@ package com.yk.marvelcomics.feature.detail.domain
 import com.yk.marvelcomics.base.domain.MviBaseActionProcessor
 import com.yk.marvelcomics.common.MarvelScheduler
 import com.yk.marvelcomics.feature.detail.data.DetailRepository
-import com.yk.marvelcomics.feature.detail.data.response.DetailResponse
 import com.yk.marvelcomics.feature.detail.presentation.*
-import com.yk.marvelcomics.feature.home.data.response.CharactersResponse
 import com.yk.marvelcomics.feature.home.domain.transformer.HomeTransformer
 import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharactersDataView
 import io.reactivex.rxjava3.core.Observable
@@ -26,7 +24,7 @@ class DetailActionProcessor @Inject constructor(
                 observableDetailComic(it)
                 return@flatMap when (it.pageType) {
                     DetailPageType.COMIC_PAGE.name -> observableDetailComic(it)
-                    DetailPageType.HERO_PAGE.name -> observableDetailHero(it)
+                    DetailPageType.CHARACTER_PAGE.name -> observableDetailHero(it)
                     DetailPageType.EVENT_PAGE.name -> observableDetailEvent(it)
                     else -> observableDetailComic(it)
                 }
@@ -68,9 +66,9 @@ class DetailActionProcessor @Inject constructor(
         Single.zip(repository.getDetailComic(it.detailId),
             repository.getCharacterByComicId(it.detailId),
             { detailComic, characters ->
-                val detailComicView = marvelMapper.comicDetailMapper(detailComic)
-                val charactersView = marvelMapper.transformCharacters(characters)
-                DetailResult.LoadPage.Content(listOf(detailComicView, charactersView))
+                val detailComicView: DetailComicDataView = marvelMapper.comicDetailMapper(detailComic)
+                val charactersView: CharactersDataView = marvelMapper.transformCharacters(characters)
+                DetailResult.LoadPage.Content(detailComicView, charactersView)
             }
         ).toObservable()
             .subscribeOn(scheduler.io)

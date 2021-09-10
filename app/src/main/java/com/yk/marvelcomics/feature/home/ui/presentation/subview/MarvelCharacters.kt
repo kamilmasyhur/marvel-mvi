@@ -23,14 +23,24 @@ class MarvelCharacters @JvmOverloads constructor(
         }
     }
 
-    fun addCharactersItem(comicDataView: CharactersDataView) =
-        adapter.initItems(comicDataView.characters)
+    fun addCharactersItem(comicDataView: CharactersDataView, listener: CharacterListener? = null) {
+        adapter.initItems(comicDataView.characters, listener)
+        binding.tvSeeAll.setOnClickListener {
+            listener?.onSeeAllCharacterClick()
+        }
+    }
 }
 
 data class CharactersDataView(
     val characters: List<Characters>
 ) : DetailDataView {
     data class Characters(
-        val thumbnail: String?
+        val thumbnail: String?,
+        val id: Int?
     )
+}
+
+interface CharacterListener {
+    fun onCharacterClick(result: CharactersDataView.Characters)
+    fun onSeeAllCharacterClick()
 }

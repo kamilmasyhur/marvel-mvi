@@ -49,7 +49,8 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
                             ?.items
                             ?.firstOrNull { it?.name.toString().isNotEmpty() }
                             ?.name.orEmpty(),
-                        thumbnail = "${result.thumbnail?.path}.${result.thumbnail?.extension}"
+                        thumbnail = "${result.thumbnail?.path}.${result.thumbnail?.extension}",
+                        id = result.id
                     )
                 )
             }
@@ -63,7 +64,8 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
             result?.thumbnail?.let {
                 characters.add(
                     CharactersDataView.Characters(
-                        thumbnail = "${result.thumbnail.path}.${result.thumbnail.extension}"
+                        thumbnail = "${result.thumbnail.path}.${result.thumbnail.extension}",
+                        id = result.id
                     )
                 )
             }

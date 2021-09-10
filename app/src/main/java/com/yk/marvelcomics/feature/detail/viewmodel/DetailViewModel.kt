@@ -25,17 +25,20 @@ class DetailViewModel @Inject constructor(
             is DetailResult.LoadPage.Content -> previousState.copy(
                 loading = false,
                 error = null,
-                dataViews = result.dataViews
+                detailComicDataView = result.detailComicDataView,
+                detailCharacterDataView = result.charactersView
             )
             is DetailResult.LoadPage.Error -> previousState.copy(
                 loading = false,
                 error = result.throwable,
-                dataViews = null
+                detailComicDataView = null,
+                detailCharacterDataView = null
             )
             is DetailResult.LoadPage.Loading -> previousState.copy(
                 loading = true,
                 error = null,
-                dataViews = null
+                detailComicDataView = null,
+                detailCharacterDataView = null
             )
         }
     }
