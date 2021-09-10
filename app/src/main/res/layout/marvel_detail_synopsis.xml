@@ -40,7 +40,7 @@
                 android:layout_marginTop="@dimen/marvel_spacing_4dp"
                 android:textColor="@color/marvel_light_bg_dark_secondary_text"
                 android:textSize="@dimen/marvel_text_size_14sp"
-                tools:text="Miles Morales grew up in Brooklyn, New York. Recently, Miles took on the controversial and pressured role of Spider-Man shortly after the death of the original." />
+                android:text="Miles Morales grew up in Brooklyn, New York. Recently, Miles took on the controversial and pressured role of Spider-Man shortly after the death of the original." />
 
         </LinearLayout>
 

@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.yk.marvelcomics.common.load
 import com.yk.marvelcomics.databinding.MarvelItemHeroBinding
+import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharacterListener
 import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharactersDataView
 
 class CharactersAdapter :
     ListAdapter<CharactersDataView.Characters, HeroViewHolder>(diffUtilItemCallback) {
+
+    private var listener: CharacterListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeroViewHolder {
         return HeroViewHolder(
@@ -19,7 +22,7 @@ class CharactersAdapter :
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ), listener
         )
     }
 
@@ -30,8 +33,9 @@ class CharactersAdapter :
     override fun getItemCount(): Int = currentList.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun initItems(comics: List<CharactersDataView.Characters>) {
+    fun initItems(comics: List<CharactersDataView.Characters>, listener: CharacterListener?) {
         submitList(comics)
+        this.listener = listener
         notifyDataSetChanged()
     }
 
@@ -56,9 +60,13 @@ class CharactersAdapter :
 }
 
 class HeroViewHolder(
-    private val binding: MarvelItemHeroBinding
+    private val binding: MarvelItemHeroBinding,
+    private val listener: CharacterListener?
 ) : RecyclerView.ViewHolder(binding.root) {
     fun bind(result: CharactersDataView.Characters) {
         binding.imageItemHero.load(result.thumbnail)
+        binding.root.setOnClickListener {
+            listener?.onCharacterClick(result)
+        }
     }
 }

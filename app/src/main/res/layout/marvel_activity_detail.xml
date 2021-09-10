@@ -22,9 +22,17 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/marvel_detail_comic" />
+        <com.yk.marvelcomics.feature.detail.presentation.MarvelDetailComicView
+            android:id="@+id/marvel_comic_detail_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <include layout="@layout/marvel_detail_synopsis" />
+
+        <com.yk.marvelcomics.feature.home.ui.presentation.subview.MarvelCharacters
+            android:id="@+id/marvel_characters_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

@@ -23,8 +23,12 @@ class MarvelComics @JvmOverloads constructor(
         }
     }
 
-    fun addComicsItem(comicDataView: ComicsDataView) =
-        adapter.initItems(comicDataView.comics)
+    fun addComicsItem(comicDataView: ComicsDataView, listener: ComicListener? = null) {
+        adapter.initItems(comicDataView.comics, listener)
+        binding.tvSeeAll.setOnClickListener {
+            listener?.onSeeAllComicClick()
+        }
+    }
 }
 
 data class ComicsDataView(
@@ -33,6 +37,12 @@ data class ComicsDataView(
     data class Comic(
         val title: String?,
         val creator: String?,
-        val thumbnail: String?
+        val thumbnail: String?,
+        val id: Int?
     )
+}
+
+interface ComicListener {
+    fun onComicClick(result: ComicsDataView.Comic)
+    fun onSeeAllComicClick()
 }
