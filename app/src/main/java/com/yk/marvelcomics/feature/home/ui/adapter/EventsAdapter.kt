@@ -8,13 +8,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.yk.marvelcomics.common.load
 import com.yk.marvelcomics.databinding.MarvelItemEventBinding
-import com.yk.marvelcomics.databinding.MarvelItemHeroBinding
-import com.yk.marvelcomics.feature.home.data.response.EventsResponse
-import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharactersDataView
 import com.yk.marvelcomics.feature.home.ui.presentation.subview.EventsDataView
+import com.yk.marvelcomics.feature.home.ui.presentation.subview.EventsListener
 
 class EventsAdapter :
     ListAdapter<EventsDataView.Event, EventViewHolder>(diffUtilItemCallback) {
+
+    private var listener: EventsListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
         return EventViewHolder(
@@ -22,7 +22,7 @@ class EventsAdapter :
                 LayoutInflater.from(parent.context),
                 parent,
                 false
-            )
+            ), listener
         )
     }
 
@@ -33,8 +33,9 @@ class EventsAdapter :
     override fun getItemCount(): Int = currentList.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun initItems(comics: List<EventsDataView.Event>) {
+    fun initItems(comics: List<EventsDataView.Event>, listener: EventsListener?) {
         submitList(comics)
+        this.listener = listener
         notifyDataSetChanged()
     }
 
@@ -59,12 +60,16 @@ class EventsAdapter :
 }
 
 class EventViewHolder(
-    private val binding: MarvelItemEventBinding
+    private val binding: MarvelItemEventBinding,
+    private val listener: EventsListener?
 ): RecyclerView.ViewHolder(binding.root) {
     fun bind(result: EventsDataView.Event) {
         binding.txtItemEventTitle.text = result.title
         binding.txtItemEventDescription.text = result.description
         binding.imageItemEvent.load(result.thumbnail)
+        binding.root.setOnClickListener {
+            listener?.onEventClick(result)
+        }
     }
 
 }

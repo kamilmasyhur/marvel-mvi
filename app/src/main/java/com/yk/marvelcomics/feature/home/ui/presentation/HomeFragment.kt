@@ -11,10 +11,7 @@ import com.yk.marvelcomics.common.viewBinding
 import com.yk.marvelcomics.databinding.MarvelFragmentHomeBinding
 import com.yk.marvelcomics.feature.detail.presentation.DetailActivity
 import com.yk.marvelcomics.feature.detail.presentation.DetailPageType
-import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharacterListener
-import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharactersDataView
-import com.yk.marvelcomics.feature.home.ui.presentation.subview.ComicListener
-import com.yk.marvelcomics.feature.home.ui.presentation.subview.ComicsDataView
+import com.yk.marvelcomics.feature.home.ui.presentation.subview.*
 import com.yk.marvelcomics.feature.home.ui.state.HomeContentView
 import com.yk.marvelcomics.feature.home.ui.state.MviHomeAction
 import com.yk.marvelcomics.feature.home.ui.state.MviHomeIntent
@@ -64,7 +61,7 @@ class HomeFragment :
             content?.let { content ->
                 marvelComicsView.addComicsItem(content.comicsData, initComicListener())
                 marvelCharactersView.addCharactersItem(content.characters, initCharacterListener())
-                marvelEventsView.addEventsItem(content.events)
+                marvelEventsView.addEventsItem(content.events, initEventsListener())
             }
             marvelComicsView.isVisible = content?.comicsData != null
             marvelCharactersView.isVisible = content?.characters != null
@@ -72,31 +69,32 @@ class HomeFragment :
         }
     }
 
-    private fun initComicListener() = object : ComicListener {
-        override fun onComicClick(result: ComicsDataView.Comic) {
-            startActivity(Intent(requireActivity(), DetailActivity::class.java).apply {
-                putExtra(DetailActivity.EXTRAS_DETAIL_ID, result.id.toString())
-                putExtra(DetailActivity.EXTRAS_PAGE_TYPE, DetailPageType.COMIC_PAGE.name)
-            })
+    fun openDetailPage(id: Int?, detailType: String) {
+        startActivity(Intent(requireActivity(), DetailActivity::class.java).apply {
+            putExtra(DetailActivity.EXTRAS_DETAIL_ID, id)
+            putExtra(DetailActivity.EXTRAS_PAGE_TYPE, detailType)
+        })
+    }
+
+    private fun initEventsListener() = object : EventsListener {
+        override fun onEventClick(result: EventsDataView.Event) {
+            openDetailPage(result.id, DetailPageType.EVENT_PAGE.name)
         }
 
-        override fun onSeeAllComicClick() {
-            TODO("Not yet implemented")
+    }
+
+    private fun initComicListener() = object : ComicListener {
+        override fun onComicClick(result: ComicsDataView.Comic) {
+            openDetailPage(result.id, DetailPageType.COMIC_PAGE.name)
         }
 
     }
 
     private fun initCharacterListener() = object : CharacterListener {
         override fun onCharacterClick(result: CharactersDataView.Characters) {
-            startActivity(Intent(requireActivity(), DetailActivity::class.java).apply {
-                putExtra(DetailActivity.EXTRAS_DETAIL_ID, result.id.toString())
-                putExtra(DetailActivity.EXTRAS_PAGE_TYPE, DetailPageType.CHARACTER_PAGE.name)
-            })
+            openDetailPage(result.id, DetailPageType.CHARACTER_PAGE.name)
         }
 
-        override fun onSeeAllCharacterClick() {
-            TODO("Not yet implemented")
-        }
     }
 
     private fun renderLoading(loading: Boolean) {

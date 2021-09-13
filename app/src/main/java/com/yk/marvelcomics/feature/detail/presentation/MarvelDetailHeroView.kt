@@ -23,7 +23,7 @@ class MarvelDetailHeroView(
     }
 
     fun setupDataView(detailHeroDataView: DetailHeroDataView) {
-        binding.textDetailHeroTitle.text = detailHeroDataView.title
+        binding.textDetailHeroTitle.text = detailHeroDataView.name
         binding.textDetailHeroDate.text = detailHeroDataView.date
         binding.imageItemHero.load(detailHeroDataView.image)
     }
@@ -31,6 +31,7 @@ class MarvelDetailHeroView(
 
 data class DetailHeroDataView(
     val image: String?,
-    val title: String?,
+    val name: String?,
+    val description: String?,
     val date: String?
 ) : DetailDataView

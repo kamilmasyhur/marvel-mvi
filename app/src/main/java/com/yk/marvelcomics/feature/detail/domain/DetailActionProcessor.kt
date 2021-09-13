@@ -5,7 +5,6 @@ import com.yk.marvelcomics.common.MarvelScheduler
 import com.yk.marvelcomics.feature.detail.data.DetailRepository
 import com.yk.marvelcomics.feature.detail.presentation.*
 import com.yk.marvelcomics.feature.home.domain.transformer.HomeTransformer
-import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharactersDataView
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.ObservableSource
 import io.reactivex.rxjava3.core.ObservableTransformer
@@ -36,7 +35,11 @@ class DetailActionProcessor @Inject constructor(
             repository.getCharactersByEventId(it.detailId),
             repository.getComicsByEventId(it.detailId),
             { detailEvent, characters, comics ->
-
+                val eventDataView = marvelMapper.eventDetailMapper(detailEvent)
+                val comicsView = marvelMapper.transformComics(comics)
+                val charactersDataView = marvelMapper.transformCharacters(characters)
+                val synopsisDataView = marvelMapper.synopsisMapper(eventDataView.description)
+                DetailResult.LoadPage.EventContent(eventDataView, comicsView, charactersDataView, synopsisDataView)
             }
         ).toObservable()
             .subscribeOn(scheduler.io)
@@ -50,8 +53,15 @@ class DetailActionProcessor @Inject constructor(
     private fun observableDetailHero(it: DetailAction.LoadPage): ObservableSource<out DetailResult.LoadPage>? {
         return Single.zip(repository.getDetailCharacter(it.detailId),
             repository.getComicsByCharacterId(it.detailId),
-            { detailCharacter,  comics ->
-
+            { detailCharacter, comics ->
+                val comicsView = marvelMapper.transformComics(comics)
+                val detailDataCharacter = marvelMapper.characterDetailMapper(detailCharacter)
+                val synopsisDataView = marvelMapper.synopsisMapper(detailDataCharacter.description)
+                DetailResult.LoadPage.CharacterContent(
+                    detailDataCharacter,
+                    comicsView,
+                    synopsisDataView
+                )
             }
         ).toObservable()
             .subscribeOn(scheduler.io)
@@ -66,9 +76,15 @@ class DetailActionProcessor @Inject constructor(
         Single.zip(repository.getDetailComic(it.detailId),
             repository.getCharacterByComicId(it.detailId),
             { detailComic, characters ->
-                val detailComicView: DetailComicDataView = marvelMapper.comicDetailMapper(detailComic)
-                val charactersView: CharactersDataView = marvelMapper.transformCharacters(characters)
-                DetailResult.LoadPage.Content(detailComicView, charactersView)
+                val detailComicView = marvelMapper.comicDetailMapper(detailComic)
+                val charactersView = marvelMapper.transformCharacters(characters)
+                val synopsisDataView = marvelMapper.synopsisMapper(detailComicView.description)
+
+                DetailResult.LoadPage.ComicContent(
+                    detailComicView,
+                    charactersView,
+                    synopsisDataView
+                )
             }
         ).toObservable()
             .subscribeOn(scheduler.io)

@@ -42,5 +42,5 @@ data class CharactersDataView(
 
 interface CharacterListener {
     fun onCharacterClick(result: CharactersDataView.Characters)
-    fun onSeeAllCharacterClick()
+    fun onSeeAllCharacterClick() {}
 }

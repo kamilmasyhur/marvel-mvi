@@ -53,7 +53,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@id/card_image_container"
         app:layout_constraintTop_toBottomOf="@id/text_detail_comic_title"
-        tools:text="Creators:" />
+        android:text="@string/marvel_creators_label" />
 
     <TextView
         android:id="@+id/text_detail_comic_creators"

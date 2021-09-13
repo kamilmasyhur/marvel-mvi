@@ -44,5 +44,5 @@ data class ComicsDataView(
 
 interface ComicListener {
     fun onComicClick(result: ComicsDataView.Comic)
-    fun onSeeAllComicClick()
+    fun onSeeAllComicClick() {}
 }
