@@ -14,14 +14,6 @@ class MarvelDetailComicView(
 
     private val binding = MarvelDetailComicBinding.inflate(LayoutInflater.from(context), this, true)
 
-    init {
-        initClickListener()
-    }
-
-    private fun initClickListener() {
-
-    }
-
     fun setupDataView(comicDataView: DetailComicDataView) {
         binding.textDetailComicTitle.text = comicDataView.title
         binding.textDetailComicCreators.text = comicDataView.creators?.joinToString()
@@ -33,6 +25,7 @@ class MarvelDetailComicView(
 
 data class DetailComicDataView(
     val title: String?,
+    val description: String?,
     val creators: List<String>?,
     val price: String?,
     val image: String?

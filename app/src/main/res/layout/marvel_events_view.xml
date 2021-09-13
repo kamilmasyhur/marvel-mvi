@@ -24,6 +24,7 @@
     android:layout_marginEnd="16dp"
     android:text="@string/marvel_comics_cta"
     android:textColor="@color/marvel_base_vivid_red"
+    android:id="@+id/tv_see_all"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 

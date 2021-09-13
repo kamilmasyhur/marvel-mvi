@@ -16,24 +16,76 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/container_detail"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.yk.marvelcomics.feature.detail.presentation.MarvelDetailComicView
-            android:id="@+id/marvel_comic_detail_view"
+        <LinearLayout
+            android:id="@+id/container_detail"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-        <include layout="@layout/marvel_detail_synopsis" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <com.yk.marvelcomics.feature.home.ui.presentation.subview.MarvelCharacters
-            android:id="@+id/marvel_characters_view"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+                <com.yk.marvelcomics.feature.detail.presentation.MarvelDetailComicView
+                    android:id="@+id/marvel_comic_detail_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="visible" />
 
-    </LinearLayout>
+                <com.yk.marvelcomics.feature.detail.presentation.MarvelDetailHeroView
+                    android:id="@+id/marvel_character_detail_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="gone" />
+
+                <com.yk.marvelcomics.feature.detail.presentation.MarvelDetailEventView
+                    android:id="@+id/marvel_event_detail_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:visibility="gone" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.yk.marvelcomics.feature.detail.presentation.MarvelDetailSynopsisView
+                android:id="@+id/marvel_synopsis_detail_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <com.yk.marvelcomics.feature.home.ui.presentation.subview.MarvelCharacters
+                android:id="@+id/marvel_characters_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <com.yk.marvelcomics.feature.home.ui.presentation.subview.MarvelComics
+                android:id="@+id/marvel_comics_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/marvel_spacing_16dp"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

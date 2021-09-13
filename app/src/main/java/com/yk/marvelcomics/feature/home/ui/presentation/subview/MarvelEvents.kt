@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.yk.marvelcomics.databinding.MarvelEventsViewBinding
 import com.yk.marvelcomics.feature.detail.presentation.DetailDataView
-import com.yk.marvelcomics.feature.home.ui.adapter.CharactersAdapter
 import com.yk.marvelcomics.feature.home.ui.adapter.EventsAdapter
 
 class MarvelEvents @JvmOverloads constructor(
@@ -24,8 +23,12 @@ class MarvelEvents @JvmOverloads constructor(
         }
     }
 
-    fun addEventsItem(comicDataView: EventsDataView) =
-        adapter.initItems(comicDataView.event)
+    fun addEventsItem(comicDataView: EventsDataView, listener: EventsListener? = null) {
+        adapter.initItems(comicDataView.event, listener)
+        binding.tvSeeAll.setOnClickListener {
+            listener?.onSeeAllEventClick()
+        }
+    }
 }
 
 data class EventsDataView(
@@ -34,6 +37,12 @@ data class EventsDataView(
     data class Event(
         val title: String,
         val description: String,
-        val thumbnail: String
+        val thumbnail: String,
+        val id: Int?
     )
+}
+
+interface EventsListener {
+    fun onEventClick(result: EventsDataView.Event)
+    fun onSeeAllEventClick() {}
 }

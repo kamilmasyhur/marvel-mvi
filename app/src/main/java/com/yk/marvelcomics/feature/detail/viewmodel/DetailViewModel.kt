@@ -22,23 +22,45 @@ class DetailViewModel @Inject constructor(
 
     override fun reduce(previousState: DetailViewState, result: DetailResult): DetailViewState {
         return when(result) {
-            is DetailResult.LoadPage.Content -> previousState.copy(
+            is DetailResult.LoadPage.ComicContent -> previousState.copy(
                 loading = false,
                 error = null,
                 detailComicDataView = result.detailComicDataView,
-                detailCharacterDataView = result.charactersView
+                charactersDataView = result.charactersView,
+                synopsisDataView = result.synopsisDataView
+            )
+            is DetailResult.LoadPage.CharacterContent -> previousState.copy(
+                loading = false,
+                error = null,
+                detailCharacterDataView = result.detailCharacterDataView,
+                comicsDataView = result.comicsDataView,
+                synopsisDataView = result.synopsisDataView,
+            )
+            is DetailResult.LoadPage.EventContent -> previousState.copy(
+                loading = false,
+                error = null,
+                detailEventDataView = result.detailEventDataView,
+                charactersDataView = result.charactersView,
+                comicsDataView = result.comicsDataView,
+                synopsisDataView = result.synopsisDataView,
             )
             is DetailResult.LoadPage.Error -> previousState.copy(
                 loading = false,
                 error = result.throwable,
                 detailComicDataView = null,
-                detailCharacterDataView = null
+                detailCharacterDataView = null,
+                charactersDataView = null,
+                synopsisDataView = null,
+                comicsDataView = null
             )
             is DetailResult.LoadPage.Loading -> previousState.copy(
                 loading = true,
                 error = null,
                 detailComicDataView = null,
-                detailCharacterDataView = null
+                detailCharacterDataView = null,
+                charactersDataView = null,
+                synopsisDataView = null,
+                comicsDataView = null
             )
         }
     }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
+import com.yk.marvelcomics.R
 import com.yk.marvelcomics.databinding.MarvelDetailSynopsisBinding
 
 class MarvelDetailSynopsisView(
@@ -21,8 +22,12 @@ class MarvelDetailSynopsisView(
 
     }
 
-    fun setupDataView(detailSynopsisDataView: DetailSynopsisDataView) {
-        binding.textDetailSynopsis.text = detailSynopsisDataView.synopsis
+    fun setupDataView(detailSynopsisDataView: DetailSynopsisDataView?) {
+        if (detailSynopsisDataView?.synopsis.isNullOrEmpty()) {
+            binding.textDetailSynopsis.text = context.getString(R.string.marvel_synopsis_placeholder)
+        } else {
+            binding.textDetailSynopsis.text = detailSynopsisDataView?.synopsis
+        }
     }
 }
 

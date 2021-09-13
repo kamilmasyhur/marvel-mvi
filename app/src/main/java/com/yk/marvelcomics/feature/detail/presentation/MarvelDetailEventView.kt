@@ -19,7 +19,7 @@ class MarvelDetailEventView(
     }
 
     private fun initClickListener() {
-        TODO("Not yet implemented")
+
     }
 
     fun setupDataView(detailEventDataView: DetailEventDataView) {
@@ -31,6 +31,7 @@ class MarvelDetailEventView(
 
 data class DetailEventDataView(
     val title: String?,
+    val description: String?,
     val year: String?,
     val image: String?
 ) : DetailDataView

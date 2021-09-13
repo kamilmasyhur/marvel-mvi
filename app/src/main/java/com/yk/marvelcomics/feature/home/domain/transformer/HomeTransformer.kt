@@ -3,6 +3,9 @@ package com.yk.marvelcomics.feature.home.domain.transformer
 import com.yk.marvelcomics.common.getOrEmpty
 import com.yk.marvelcomics.feature.detail.data.response.DetailResponse
 import com.yk.marvelcomics.feature.detail.presentation.DetailComicDataView
+import com.yk.marvelcomics.feature.detail.presentation.DetailEventDataView
+import com.yk.marvelcomics.feature.detail.presentation.DetailHeroDataView
+import com.yk.marvelcomics.feature.detail.presentation.DetailSynopsisDataView
 import com.yk.marvelcomics.feature.home.data.response.CharactersResponse
 import com.yk.marvelcomics.feature.home.data.response.ComicsResponse
 import com.yk.marvelcomics.feature.home.data.response.EventsResponse
@@ -23,6 +26,9 @@ interface HomeTransformer {
     fun transformCharacters(charactersResponse: CharactersResponse): CharactersDataView
     fun transformEvents(eventsResponse: EventsResponse): EventsDataView
     fun comicDetailMapper(detailComic: DetailResponse): DetailComicDataView
+    fun synopsisMapper(synopsis: String?): DetailSynopsisDataView
+    fun characterDetailMapper(detailCharacter: DetailResponse): DetailHeroDataView
+    fun eventDetailMapper(detailEvent: DetailResponse?): DetailEventDataView
 }
 
 class HomeTransformerImpl @Inject constructor() : HomeTransformer {
@@ -82,7 +88,8 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
                     EventsDataView.Event(
                         title = result.title.getOrEmpty(),
                         description = result.description.getOrEmpty(),
-                        thumbnail = "${result.thumbnail?.path}.${result.thumbnail?.extension}"
+                        thumbnail = "${result.thumbnail?.path}.${result.thumbnail?.extension}",
+                        id = result.id
                     )
                 )
             }
@@ -98,8 +105,28 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
         val price = "$${detailDataComic?.prices?.firstOrNull()?.price}"
         val image = "${detailDataComic?.thumbnail?.path}.${detailDataComic?.thumbnail?.extension}"
         return DetailComicDataView(
-            title = detailDataComic?.title, creators = creators, price = price,
-            image = image
+            title = detailDataComic?.title, description = detailDataComic?.description,
+            creators = creators, price = price, image = image
         )
+    }
+
+    override fun synopsisMapper(synopsis: String?) = DetailSynopsisDataView(synopsis)
+
+    override fun characterDetailMapper(detailCharacter: DetailResponse): DetailHeroDataView {
+        val detailData = detailCharacter.data?.results?.firstOrNull()
+        val image = "${detailData?.thumbnail?.path}.${detailData?.thumbnail?.extension}"
+        val name = detailData?.name
+        val description = detailData?.description
+        val date = detailData?.modified
+        return DetailHeroDataView(image, name, description, date)
+    }
+
+    override fun eventDetailMapper(detailEvent: DetailResponse?): DetailEventDataView {
+        val detailData = detailEvent?.data?.results?.firstOrNull()
+        val title = detailData?.title
+        val image = "${detailData?.thumbnail?.path}.${detailData?.thumbnail?.extension}"
+        val description = detailData?.description
+        val date = detailData?.modified
+        return DetailEventDataView(title, description, date, image)
     }
 }

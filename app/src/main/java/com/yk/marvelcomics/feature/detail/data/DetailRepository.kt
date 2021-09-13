@@ -2,6 +2,7 @@ package com.yk.marvelcomics.feature.detail.data
 
 import com.yk.marvelcomics.feature.detail.data.response.DetailResponse
 import com.yk.marvelcomics.feature.home.data.response.CharactersResponse
+import com.yk.marvelcomics.feature.home.data.response.ComicsResponse
 import com.yk.marvelcomics.repository.MarvelApi
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.Path
@@ -11,10 +12,10 @@ interface DetailRepository {
     fun getDetailComic(comicId: Int): Single<DetailResponse>
     fun getCharacterByComicId(comicId: Int): Single<CharactersResponse>
     fun getDetailCharacter(characterId: Int): Single<DetailResponse>
-    fun getComicsByCharacterId(characterId: Int): Single<DetailResponse>
+    fun getComicsByCharacterId(characterId: Int): Single<ComicsResponse>
     fun getDetailEvent(eventId: Int): Single<DetailResponse>
-    fun getCharactersByEventId(eventId: Int): Single<DetailResponse>
-    fun getComicsByEventId(eventId: Int): Single<DetailResponse>
+    fun getCharactersByEventId(eventId: Int): Single<CharactersResponse>
+    fun getComicsByEventId(eventId: Int): Single<ComicsResponse>
 }
 
 class DetailRepositoryImpl @Inject constructor(
@@ -32,7 +33,7 @@ class DetailRepositoryImpl @Inject constructor(
         return api.getDetailCharacter(characterId)
     }
 
-    override fun getComicsByCharacterId(characterId: Int): Single<DetailResponse> {
+    override fun getComicsByCharacterId(characterId: Int): Single<ComicsResponse> {
         return api.getComicsByCharacterId(characterId)
     }
 
@@ -40,11 +41,11 @@ class DetailRepositoryImpl @Inject constructor(
         return api.getDetailEvent(eventId)
     }
 
-    override fun getCharactersByEventId(eventId: Int): Single<DetailResponse> {
+    override fun getCharactersByEventId(eventId: Int): Single<CharactersResponse> {
         return api.getCharactersByEventId(eventId)
     }
 
-    override fun getComicsByEventId(eventId: Int): Single<DetailResponse> {
+    override fun getComicsByEventId(eventId: Int): Single<ComicsResponse> {
         return api.getComicsByEventId(eventId)
     }
 

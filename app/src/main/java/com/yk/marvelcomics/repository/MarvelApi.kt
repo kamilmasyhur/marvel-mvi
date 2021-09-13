@@ -36,7 +36,7 @@ interface MarvelApi {
     @GET("/v1/public/characters/{characterId}/comics")
     fun getComicsByCharacterId(
         @Path("characterId") characterId: Int
-    ): Single<DetailResponse>
+    ): Single<ComicsResponse>
 
     @GET("/v1/public/events/{eventId}")
     fun getDetailEvent(
@@ -46,11 +46,11 @@ interface MarvelApi {
     @GET("/v1/public/events/{eventId}/characters")
     fun getCharactersByEventId(
         @Path("eventId") eventId: Int
-    ): Single<DetailResponse>
+    ): Single<CharactersResponse>
 
     @GET("/v1/public/events/{eventId}/comics")
     fun getComicsByEventId(
         @Path("eventId") eventId: Int
-    ): Single<DetailResponse>
+    ): Single<ComicsResponse>
 
 }

@@ -15,7 +15,9 @@
         android:theme="@style/MarvelTheme.MarvelComics"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".feature.detail.presentation.DetailActivity"></activity>
+        <activity android:name=".feature.detail.presentation.DetailActivity">
+
+        </activity>
         <activity
             android:name=".feature.main.presentation.MainActivity"
             android:exported="true">

@@ -42,7 +42,7 @@ data class DetailResponse(
             @SerializedName("dates")
             val dates: List<Date?>?,
             @SerializedName("description")
-            val description: Any?,
+            val description: String?,
             @SerializedName("diamondCode")
             val diamondCode: String?,
             @SerializedName("digitalId")
@@ -81,6 +81,8 @@ data class DetailResponse(
             val thumbnail: Thumbnail?,
             @SerializedName("title")
             val title: String?,
+            @SerializedName("name")
+            val name: String?,
             @SerializedName("upc")
             val upc: String?,
             @SerializedName("urls")

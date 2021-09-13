@@ -14,4 +14,6 @@
     <string name="marvel_comics_cta">See All</string>
     <string name="marvel_share">Share</string>
     <string name="marvel_synopsis">Synopsis</string>
+    <string name="marvel_creators_label">Creators:</string>
+    <string name="marvel_synopsis_placeholder">No description</string>
 </resources>
