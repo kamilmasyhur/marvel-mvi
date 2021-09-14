@@ -29,6 +29,7 @@ interface HomeTransformer {
     fun synopsisMapper(synopsis: String?): DetailSynopsisDataView
     fun characterDetailMapper(detailCharacter: DetailResponse): DetailHeroDataView
     fun eventDetailMapper(detailEvent: DetailResponse?): DetailEventDataView
+    fun comicGalleryMapper(detailComic: DetailResponse): ComicsDataView
 }
 
 class HomeTransformerImpl @Inject constructor() : HomeTransformer {
@@ -128,5 +129,14 @@ class HomeTransformerImpl @Inject constructor() : HomeTransformer {
         val description = detailData?.description
         val date = detailData?.modified
         return DetailEventDataView(title, description, date, image)
+    }
+
+    override fun comicGalleryMapper(detailComic: DetailResponse): ComicsDataView {
+        val detailDataComic = detailComic.data?.results?.firstOrNull()
+        val gallery = detailDataComic?.images?.map {
+            val thumbnail = "${it.path}.${it.extension}"
+            ComicsDataView.Comic(null, null, thumbnail, null)
+        }.orEmpty()
+        return ComicsDataView(gallery)
     }
 }

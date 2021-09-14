@@ -24,7 +24,8 @@ class MarvelComics @JvmOverloads constructor(
     }
 
     fun addComicsItem(comicDataView: ComicsDataView, listener: ComicListener? = null) {
-        adapter.initItems(comicDataView.comics, listener)
+        val comics: List<ComicsDataView.Comic> = comicDataView.comics
+        adapter.initItems(comics, listener)
         binding.tvSeeAll.setOnClickListener {
             listener?.onSeeAllComicClick()
         }

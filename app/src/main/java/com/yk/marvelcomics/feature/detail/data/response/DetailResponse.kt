@@ -55,8 +55,6 @@ data class DetailResponse(
             val format: String?,
             @SerializedName("id")
             val id: Int?,
-            @SerializedName("images")
-            val images: List<Any?>?,
             @SerializedName("isbn")
             val isbn: String?,
             @SerializedName("issn")
@@ -79,6 +77,8 @@ data class DetailResponse(
             val textObjects: List<Any?>?,
             @SerializedName("thumbnail")
             val thumbnail: Thumbnail?,
+            @SerializedName("images")
+            val images: List<Thumbnail>?,
             @SerializedName("title")
             val title: String?,
             @SerializedName("name")
