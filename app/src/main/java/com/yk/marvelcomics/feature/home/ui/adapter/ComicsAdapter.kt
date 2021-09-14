@@ -2,6 +2,7 @@ package com.yk.marvelcomics.feature.home.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil.ItemCallback
 import androidx.recyclerview.widget.ListAdapter
@@ -66,6 +67,12 @@ class ComicViewHolder(
     fun bind(result: ComicsDataView.Comic) = with(binding) {
         txtComicTitle.text = result.title
         txtComicCreator.text = result.creator
+        if (result.title == null) {
+            txtComicTitle.visibility = View.GONE
+        }
+        if (result.creator == null) {
+            txtComicCreator.visibility = View.GONE
+        }
         imgItemComic.load(result.thumbnail)
         root.setOnClickListener {
             listener?.onComicClick(result)

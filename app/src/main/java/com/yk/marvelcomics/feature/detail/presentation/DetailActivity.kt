@@ -51,7 +51,7 @@ class DetailActivity :
             binding.marvelComicDetailView.setupDataView(it)
         }
         charactersDataView?.let {
-            binding.marvelCharactersView.visibility = View.VISIBLE
+            binding.marvelCharactersCard.visibility = View.VISIBLE
             binding.marvelCharactersView.addCharactersItem(it)
         }
         detailCharacterDataView?.let {
@@ -59,15 +59,21 @@ class DetailActivity :
             binding.marvelCharacterDetailView.setupDataView(it)
         }
         synopsisDataView?.let {
+            binding.marvelSynopsisDetailView.visibility = View.VISIBLE
             binding.marvelSynopsisDetailView.setupDataView(it)
         }
         comicsDataView?.let {
-            binding.marvelComicsView.visibility = View.VISIBLE
+            binding.marvelComicsCard.visibility = View.VISIBLE
             binding.marvelComicsView.addComicsItem(it)
         }
         detailEventDataView?.let {
             binding.marvelEventDetailView.visibility = View.VISIBLE
             binding.marvelEventDetailView.setupDataView(it)
+        }
+        binding.progressBar.visibility = if (state.loading) {
+            View.VISIBLE
+        } else {
+            View.GONE
         }
     }
 
@@ -109,9 +115,7 @@ class DetailActivity :
     }
 
     override fun onClick(v: View?) {
-        when(v) {
-            binding.toolbar -> onBackPressed()
-        }
+        onBackPressed()
     }
 
 }

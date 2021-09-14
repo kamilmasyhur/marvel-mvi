@@ -9,7 +9,8 @@ sealed class DetailResult : MviResult {
         data class ComicContent(
             val detailComicDataView: DetailComicDataView,
             val charactersView: CharactersDataView,
-            val synopsisDataView: DetailSynopsisDataView
+            val synopsisDataView: DetailSynopsisDataView,
+            val comicGallery: ComicsDataView
         ) : LoadPage()
 
         data class CharacterContent(

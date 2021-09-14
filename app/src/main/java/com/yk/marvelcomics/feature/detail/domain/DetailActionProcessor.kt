@@ -79,11 +79,12 @@ class DetailActionProcessor @Inject constructor(
                 val detailComicView = marvelMapper.comicDetailMapper(detailComic)
                 val charactersView = marvelMapper.transformCharacters(characters)
                 val synopsisDataView = marvelMapper.synopsisMapper(detailComicView.description)
-
+                val comicGallery = marvelMapper.comicGalleryMapper(detailComic)
                 DetailResult.LoadPage.ComicContent(
                     detailComicView,
                     charactersView,
-                    synopsisDataView
+                    synopsisDataView,
+                    comicGallery
                 )
             }
         ).toObservable()
