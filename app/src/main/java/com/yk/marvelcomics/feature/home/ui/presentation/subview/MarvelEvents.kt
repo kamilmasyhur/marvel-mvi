@@ -24,7 +24,15 @@ class MarvelEvents @JvmOverloads constructor(
     }
 
     fun addEventsItem(comicDataView: EventsDataView, listener: EventsListener? = null) {
-        adapter.initItems(comicDataView.event, listener)
+        val empty = comicDataView.event.isEmpty()
+        if (empty) {
+            binding.textEmpty.visibility = VISIBLE
+            binding.rvComics.visibility = GONE
+        } else {
+            binding.textEmpty.visibility = GONE
+            binding.rvComics.visibility = VISIBLE
+            adapter.initItems(comicDataView.event, listener)
+        }
         binding.tvSeeAll.setOnClickListener {
             listener?.onSeeAllEventClick()
         }

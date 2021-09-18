@@ -24,7 +24,15 @@ class MarvelCharacters @JvmOverloads constructor(
     }
 
     fun addCharactersItem(comicDataView: CharactersDataView, listener: CharacterListener? = null) {
-        adapter.initItems(comicDataView.characters, listener)
+        val empty = comicDataView.characters.isEmpty()
+        if (empty) {
+            binding.textEmpty.visibility = VISIBLE
+            binding.rvComics.visibility = GONE
+        } else {
+            binding.textEmpty.visibility = GONE
+            binding.rvComics.visibility = VISIBLE
+            adapter.initItems(comicDataView.characters, listener)
+        }
         binding.tvSeeAll.setOnClickListener {
             listener?.onSeeAllCharacterClick()
         }
