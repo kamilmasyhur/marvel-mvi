@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
   <!-- Base application theme. -->
-  <style name="MarvelTheme.MarvelComics" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+  <style name="MarvelTheme.MarvelComics" parent="Theme.MaterialComponents.DayNight.NoActionBar">
     <!-- Primary brand color. -->
     <item name="colorPrimary">@color/marvel_purple_500</item>
-    <item name="colorPrimaryVariant">@color/marvel_purple_700</item>
+    <item name="colorPrimaryVariant">@color/marvel_grey</item>
     <item name="colorOnPrimary">@color/marvel_white</item>
     <!-- Secondary brand color. -->
     <item name="colorSecondary">@color/marvel_teal_200</item>

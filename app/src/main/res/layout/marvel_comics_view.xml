@@ -13,6 +13,7 @@
     android:layout_marginTop="16dp"
     android:layout_marginStart="16dp"
     android:text="@string/marvel_comics_title"
+    android:textColor="@color/marvel_light_bg_dark_primary_text"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
