@@ -6,6 +6,16 @@
   android:layout_height="match_parent"
   tools:context=".feature.main.presentation.MainActivity">
 
+  <ImageView
+      android:contentDescription="@string/marvel_app_name"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      android:layout_width="90dp"
+      android:layout_height="36dp"
+      android:id="@+id/header_logo"
+      android:layout_margin="@dimen/marvel_spacing_16dp"
+      android:src="@drawable/marvel_logo"/>
+
   <androidx.viewpager2.widget.ViewPager2
     android:id="@+id/viewPager"
     android:layout_width="match_parent"
@@ -14,8 +24,9 @@
     app:layout_constraintBottom_toTopOf="@id/btmNavMain"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0" />
+    app:layout_constraintTop_toBottomOf="@id/header_logo"
+    app:layout_constraintVertical_bias="0"
+    android:layout_marginTop="@dimen/marvel_spacing_16dp"/>
 
   <com.google.android.material.bottomnavigation.BottomNavigationView
     android:id="@+id/btmNavMain"
