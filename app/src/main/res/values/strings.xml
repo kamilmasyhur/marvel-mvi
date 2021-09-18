@@ -16,4 +16,5 @@
     <string name="marvel_synopsis">Synopsis</string>
     <string name="marvel_creators_label">Creators:</string>
     <string name="marvel_synopsis_placeholder">No description</string>
+  <string name="marvel_no_data_found">No Data Found</string>
 </resources>

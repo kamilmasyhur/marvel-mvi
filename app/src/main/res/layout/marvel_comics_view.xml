@@ -19,6 +19,19 @@
     app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
+      android:visibility="gone"
+      android:id="@+id/text_empty"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="@dimen/marvel_spacing_4dp"
+      android:layout_marginStart="@dimen/marvel_spacing_16dp"
+      android:textColor="@color/marvel_light_bg_dark_secondary_text"
+      android:textSize="@dimen/marvel_text_size_14sp"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/tv_comics_title"
+      android:text="@string/marvel_no_data_found" />
+
+  <TextView
     android:id="@+id/tv_see_all"
     android:textStyle="bold"
     android:layout_width="wrap_content"
