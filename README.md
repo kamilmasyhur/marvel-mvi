@@ -29,6 +29,7 @@ What we used here:
 * RxJava2
 * Retrofit
 * Coil
+* Hilt
 
 ### How to start?
 
