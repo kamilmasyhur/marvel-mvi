@@ -21,6 +21,7 @@ The role of each MVI components is as follows:
 
 * Android Studio
   Download [here](https://developer.android.com/studio) 
+* Register Marvel API, [here](https://developer.marvel.com/).
 
 ### Built with
 
