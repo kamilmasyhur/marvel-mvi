@@ -21,6 +21,7 @@ The role of each MVI components is as follows:
 
 * Android Studio
   Download [here](https://developer.android.com/studio) 
+* Gradle 7.0.2  
 * Register Marvel API, [here](https://developer.marvel.com/).
 
 ### Built with
@@ -31,6 +32,21 @@ What we used here:
 * Retrofit
 * Coil
 * Hilt
+
+### Project Setup
+1. Getting API Key from Marvel API
+2. Open or create `gradle.properties` file in your root project.
+3. Edit to put your API key:
+```
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+android.enableJetifier=true
+kotlin.code.style=official
+base_url="https://gateway.marvel.com:443/"
+public_key="public_key_here"
+private_key="private_key_here"
+```
+4. Rebuild or Re-open the project.
 
 ### How to start?
 
