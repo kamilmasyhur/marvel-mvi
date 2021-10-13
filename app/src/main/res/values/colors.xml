@@ -9,6 +9,7 @@
   <color name="marvel_white">#FFFFFFFF</color>
   <color name="marvel_base_vivid_red">#E23636</color>
   <color name="marvel_grey">#504A4A</color>
+  <color name="marvel_circle_bg">#C4C4C4</color>
 
   <!--Light Background Dark Text-->
   <!--Source: https://gist.github.com/balao7/92286c897ba5a850fc350eb0b10bf327-->
