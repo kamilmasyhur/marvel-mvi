@@ -25,17 +25,13 @@ abstract class MviBaseActivityView<
     private val compositeDisposable = CompositeDisposable()
     protected lateinit var eventEmitter: PublishSubject<I>
 
-    private lateinit var viewModel: MviBaseViewModel<I, A, R, S>
-
-    abstract fun getViewModel(): MviBaseViewModel<I, A, R, S>
+    abstract val viewModel: MviBaseViewModel<I, A, R, S>
 
     abstract val binding: ViewBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         preCreate()
-        viewModel = getViewModel()
-        check(::viewModel.isInitialized) { "ViewModel is not initialized" }
         setContentView(binding.root)
         eventEmitter = PublishSubject.create()
         viewModel.state()

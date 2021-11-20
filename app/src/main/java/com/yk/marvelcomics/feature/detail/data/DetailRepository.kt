@@ -1,11 +1,14 @@
 package com.yk.marvelcomics.feature.detail.data
 
+import androidx.annotation.WorkerThread
 import com.yk.marvelcomics.feature.detail.data.response.DetailResponse
 import com.yk.marvelcomics.feature.home.data.response.CharactersResponse
 import com.yk.marvelcomics.feature.home.data.response.ComicsResponse
 import com.yk.marvelcomics.repository.MarvelApi
+import com.yk.marvelcomics.repository.MarvelDatabase
+import com.yk.marvelcomics.repository.dao.Favorite
+import com.yk.marvelcomics.repository.dao.FavoriteDao
 import io.reactivex.rxjava3.core.Single
-import retrofit2.http.Path
 import javax.inject.Inject
 
 interface DetailRepository {
@@ -16,10 +19,14 @@ interface DetailRepository {
     fun getDetailEvent(eventId: Int): Single<DetailResponse>
     fun getCharactersByEventId(eventId: Int): Single<CharactersResponse>
     fun getComicsByEventId(eventId: Int): Single<ComicsResponse>
+
+    fun insertFavorite(favorite: Favorite): Long
+    fun removeFavorite(favorite: Favorite)
 }
 
 class DetailRepositoryImpl @Inject constructor(
-    private val api: MarvelApi
+    private val api: MarvelApi,
+    private val db: MarvelDatabase
 ) : DetailRepository {
     override fun getDetailComic(comicId: Int): Single<DetailResponse> {
         return api.getDetailComic(comicId)
@@ -49,4 +56,13 @@ class DetailRepositoryImpl @Inject constructor(
         return api.getComicsByEventId(eventId)
     }
 
+    @WorkerThread
+    override fun insertFavorite(favorite: Favorite): Long {
+        return db.favoriteDao().insert(favorite)
+    }
+
+    @WorkerThread
+    override fun removeFavorite(favorite: Favorite) {
+        return db.favoriteDao().remove(favorite)
+    }
 }
