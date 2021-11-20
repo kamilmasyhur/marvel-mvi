@@ -14,13 +14,13 @@ import javax.inject.Inject
 class DetailActionProcessor @Inject constructor(
     private val repository: DetailRepository,
     private val scheduler: MarvelScheduler,
-    private val marvelMapper: HomeTransformer
+    private val marvelMapper: HomeTransformer,
+    private val favoriteDataProcessor: FavoriteDataProcessor
 ) : MviBaseActionProcessor<DetailAction, DetailResult>() {
 
     private val loadPageProcessor =
         ObservableTransformer<DetailAction.LoadPage, DetailResult.LoadPage> { action ->
             action.flatMap {
-                observableDetailComic(it)
                 return@flatMap when (it.pageType) {
                     DetailPageType.COMIC_PAGE.name -> observableDetailComic(it)
                     DetailPageType.CHARACTER_PAGE.name -> observableDetailHero(it)
@@ -99,7 +99,9 @@ class DetailActionProcessor @Inject constructor(
         get() = ObservableTransformer { action ->
             action.publish { source ->
                 Observable.mergeArray(
-                    source.ofType(DetailAction.LoadPage::class.java).compose(loadPageProcessor)
+                    source.ofType(DetailAction.LoadPage::class.java).compose(loadPageProcessor),
+                    source.ofType(DetailAction.AddFavorite::class.java).compose(favoriteDataProcessor.addFavoriteProcessor),
+                    source.ofType(DetailAction.RemoveFavorite::class.java).compose(favoriteDataProcessor.removeFavoriteProcessor)
                 )
             }
         }

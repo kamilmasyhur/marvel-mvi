@@ -23,7 +23,6 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.math.BigInteger
 import java.security.MessageDigest
-import javax.inject.Named
 import javax.inject.Singleton
 
 @Module

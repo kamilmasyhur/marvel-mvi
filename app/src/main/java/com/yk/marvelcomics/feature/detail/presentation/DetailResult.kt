@@ -3,6 +3,7 @@ package com.yk.marvelcomics.feature.detail.presentation
 import com.yk.marvelcomics.base.MviResult
 import com.yk.marvelcomics.feature.home.ui.presentation.subview.CharactersDataView
 import com.yk.marvelcomics.feature.home.ui.presentation.subview.ComicsDataView
+import com.yk.marvelcomics.repository.dao.Favorite
 
 sealed class DetailResult : MviResult {
     sealed class LoadPage : DetailResult() {
@@ -29,5 +30,12 @@ sealed class DetailResult : MviResult {
         data class Error(val throwable: Throwable) : LoadPage()
 
         object Loading : LoadPage()
+    }
+
+    sealed class FavoriteData: DetailResult() {
+        object AddFavoriteSuccess : FavoriteData()
+        object RemoveFavoriteSuccess : FavoriteData()
+
+        data class Error(val throwable: Throwable) : FavoriteData()
     }
 }

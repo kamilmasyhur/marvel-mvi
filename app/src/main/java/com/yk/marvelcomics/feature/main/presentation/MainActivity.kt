@@ -39,7 +39,10 @@ class MainActivity : MviBaseActivityView<
 
     override val binding by viewBinding(MarvelActivityMainBinding::inflate)
 
-    //registering any event possibilities
+    override val viewModel: MviBaseViewModel<MainIntent, MainAction, MainResult, MainViewState>
+        get() = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
+
+            //registering any event possibilities
     override fun intents(): Observable<MainIntent> = Observable.mergeArray(
         intent.ofType(MainIntent.SampleIntent::class.java),
         eventEmitter.hide()
@@ -55,11 +58,6 @@ class MainActivity : MviBaseActivityView<
             is MainViewState.InitialState -> renderInitialState(state)
         }.exhaustive
     }
-
-    override fun getViewModel(): MviBaseViewModel<MainIntent, MainAction, MainResult, MainViewState> {
-        return ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-    }
-
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {

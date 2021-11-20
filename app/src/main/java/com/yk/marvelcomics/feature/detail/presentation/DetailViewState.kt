@@ -12,7 +12,8 @@ data class DetailViewState(
     val synopsisDataView: DetailSynopsisDataView?,
     val detailCharacterDataView: DetailHeroDataView?,
     val comicsDataView: ComicsDataView?,
-    val detailEventDataView: DetailEventDataView?
+    val detailEventDataView: DetailEventDataView?,
+    val isFavorite: Boolean = false,
 ) : MviViewState {
     companion object {
         fun initiate() = DetailViewState(true, null, null,

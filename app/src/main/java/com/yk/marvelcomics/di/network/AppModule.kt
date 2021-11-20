@@ -10,6 +10,7 @@ import javax.inject.Singleton
 @Module(
     includes = [
         NetworkModule::class,
+        DatabaseModule::class,
         CommonModule::class
     ]
 )
