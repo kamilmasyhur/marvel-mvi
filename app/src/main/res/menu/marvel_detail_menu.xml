@@ -3,6 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/menu_favorite"
+        android:icon="@drawable/marvel_ic_favorite_24"
+        android:checkable="true"
+        android:checked="false"
+        android:title="@string/marvel_share"
+        app:showAsAction="ifRoom"/>
+
+    <item
         android:id="@+id/menu_share"
         android:icon="@drawable/marvel_ic_share_24"
         android:title="@string/marvel_share"

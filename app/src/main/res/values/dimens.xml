@@ -9,4 +9,5 @@
     <dimen name="marvel_text_size_14sp">14sp</dimen>
     <dimen name="marvel_text_size_16sp">16sp</dimen>
     <dimen name="marvel_spacing_32dp">32dp</dimen>
+    <dimen name="marvel_spacing_circular">35dp</dimen>
 </resources>

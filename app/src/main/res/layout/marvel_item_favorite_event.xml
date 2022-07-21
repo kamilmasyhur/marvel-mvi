@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/marvel_spacing_16dp"
+    android:layout_marginTop="@dimen/marvel_spacing_8dp"
+    android:layout_marginEnd="@dimen/marvel_spacing_16dp"
+    android:layout_marginBottom="@dimen/marvel_spacing_8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/marvel_spacing_16dp">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_image_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/marvel_spacing_4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="@dimen/marvel_spacing_8dp">
+
+            <ImageView
+                android:id="@+id/img_item_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_height="70dp"
+                tools:layout_width="70dp"
+                android:scaleType="centerCrop"
+                tools:src="@drawable/image_hero_spiderman" />
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/text_item_name_fav"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/marvel_spacing_16dp"
+            android:layout_marginEnd="@dimen/marvel_spacing_8dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:textColor="@color/marvel_light_bg_dark_primary_text"
+            android:textSize="@dimen/marvel_text_size_14sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/text_item_category_fav"
+            app:layout_constraintEnd_toStartOf="@id/icon_favorite_container"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@id/card_image_container"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="The Amazing Spiderman" />
+
+        <TextView
+            android:id="@+id/text_item_category_fav"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/marvel_spacing_4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/text_item_name_fav"
+            app:layout_constraintTop_toBottomOf="@+id/text_item_name_fav"
+            tools:text="Comic" />
+
+        <RelativeLayout
+            android:id="@+id/icon_favorite_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/marvel_bg_favorite"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/icon_favorite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                tools:src="@drawable/marvel_ic_favorite_full" />
+
+        </RelativeLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
